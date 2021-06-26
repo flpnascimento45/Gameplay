@@ -10,11 +10,7 @@ export const styles = StyleSheet.create({
     },
     overlay: {
         flex: 1,
-        backgroundColor: theme.colors.overlay,
-        position: 'absolute',
-        top: 0,
-        height: '100%',
-        width: '100%'
+        backgroundColor: theme.colors.overlay
     },
     bar: {
         width: 39,

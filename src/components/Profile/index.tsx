@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
 import { useAuth } from '../../hooks/auth';

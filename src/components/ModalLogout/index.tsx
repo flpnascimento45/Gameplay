@@ -1,41 +1,44 @@
 import React, { ReactNode } from 'react';
 import {
     View,
+    Text,
     Modal,
-    ModalProps,
-    TouchableWithoutFeedback,
-    Text
+    ModalProps
 } from 'react-native';
 
 import { styles } from './styles';
 
 import { Background } from '../Background';
 
-type Props = {
+type Props = ModalProps & {
     children: ReactNode;
-    visible: boolean;
 }
 
 export function ModalLogout({
     children,
-    visible
+    ...rest
 }: Props) {
     return (
-
-        <View style={styles.overlay}>
-            <View style={styles.container}>
-                <Background>
-                    <View style={styles.bar} />
-                    <View style={styles.containerTitle}>
-                        <Text style={styles.title}>
-                            Deseja sair do Game
-                            <Text style={[{ color: 'red' }]}>Play</Text>
-                        </Text>
-                    </View>
-                    {children}
-                </Background>
+        <Modal
+            transparent
+            animationType="slide"
+            statusBarTranslucent
+            {...rest}
+        >
+            <View style={styles.overlay}>
+                <View style={styles.container}>
+                    <Background>
+                        <View style={styles.bar} />
+                        <View style={styles.containerTitle}>
+                            <Text style={styles.title}>
+                                Deseja sair do Game
+                                <Text style={[{ color: 'red' }]}>Play</Text>
+                            </Text>
+                        </View>
+                        {children}
+                    </Background>
+                </View>
             </View>
-        </View>
-
+        </Modal>
     );
 }

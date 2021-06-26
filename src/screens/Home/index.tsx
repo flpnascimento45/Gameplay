@@ -106,19 +106,14 @@ export function Home() {
             />
           </>
       }
-      {
-        logoutModal &&
-        <ModalLogout
-          visible={logoutModal}
-        >
-          <ButtonsLogout
-            closeModal={handleCloseLogoutModal}
-            signOut={handleSignOut}
-          />
 
-        </ModalLogout>
+      <ModalLogout visible={logoutModal}>
+        <ButtonsLogout
+          closeModal={handleCloseLogoutModal}
+          signOut={handleSignOut}
+        />
 
-      }
+      </ModalLogout>
 
     </Background >
   );
