@@ -7,26 +7,16 @@ import { useAuth } from '../../hooks/auth';
 import { Avatar } from '../Avatar';
 import { styles } from './styles';
 
-export function Profile() {
-  const { user, singOut } = useAuth();
+type Props = {
+  handleSignOut: () => void
+}
 
-  function handleSignOut() {
-    Alert.alert('Logout', 'Deseja sair do GamePlay?',
-    [
-      {
-        text: 'Não',
-        style: 'cancel'
-      },
-      {
-        text: 'Sim',
-        onPress: () => singOut()
-      }
-    ])
-  }
+export function Profile({ handleSignOut }: Props) {
+  const { user, singOut } = useAuth();
 
   return (
     <View style={styles.container}>
-    
+
       <RectButton onPress={handleSignOut}>
         <Avatar urlImage={user.avatar} />
       </RectButton>
@@ -36,9 +26,9 @@ export function Profile() {
           <Text style={styles.greeting}>
             Olá,
           </Text>
-          
+
           <Text style={styles.username}>
-            { user.firstName }
+            {user.firstName}
           </Text>
         </View>
 
