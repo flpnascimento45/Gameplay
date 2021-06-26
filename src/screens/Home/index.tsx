@@ -33,8 +33,8 @@ export function Home() {
     categoryId === category ? setCategory('') : setCategory(categoryId);
   }
 
-  function handleAppointmentDetails(guildSelected: AppointmentProps) {
-    navigation.navigate('AppointmentDetails', { guildSelected });
+  function handleAppointmentDetails(appointmentSelected: AppointmentProps) {
+    navigation.navigate('AppointmentDetails', { appointmentSelected });
   }
 
   function handleAppointmentCreate() {
