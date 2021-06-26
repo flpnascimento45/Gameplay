@@ -62,9 +62,83 @@ export function AppointmentCreate() {
 
   function validNewAppointment() {
 
-    let returnValid = 'Falha';
+    if (!category) {
+      return 'Necessário selecionar uma categoria!';
+    }
 
-    return returnValid;
+    if (!guild.id) {
+      return 'Necessário selecionar um servidor!';
+    }
+
+    if (isNaN(parseInt(month))) {
+      return 'Valor inválido no mês!';
+    }
+
+    if (isNaN(parseInt(day))) {
+      return 'Valor inválido no dia!';
+    }
+
+    if (isNaN(parseInt(hour))) {
+      return 'Valor inválido na hora!';
+    }
+
+    if (isNaN(parseInt(minute))) {
+      return 'Valor inválido no minuto!';
+    }
+
+    const monthInt = parseInt(month);
+    const dayInt = parseInt(day);
+    const hourInt = parseInt(hour);
+    const minuteInt = parseInt(minute);
+
+    const arrayDayMonth = [
+      { vMonth: 1, vDays: { min: 1, max: 31 } },
+      { vMonth: 2, vDays: { min: 1, max: 28 } },
+      { vMonth: 3, vDays: { min: 1, max: 31 } },
+      { vMonth: 4, vDays: { min: 1, max: 30 } },
+      { vMonth: 5, vDays: { min: 1, max: 31 } },
+      { vMonth: 6, vDays: { min: 1, max: 30 } },
+      { vMonth: 7, vDays: { min: 1, max: 31 } },
+      { vMonth: 8, vDays: { min: 1, max: 31 } },
+      { vMonth: 9, vDays: { min: 1, max: 30 } },
+      { vMonth: 10, vDays: { min: 1, max: 31 } },
+      { vMonth: 11, vDays: { min: 1, max: 30 } },
+      { vMonth: 12, vDays: { min: 1, max: 31 } }
+    ];
+
+    let findMonth = false;
+
+    arrayDayMonth.forEach(monthArray => {
+
+      if (monthArray.vMonth == monthInt) {
+
+        findMonth = true;
+
+        if (dayInt < monthArray.vDays.min || dayInt > monthArray.vDays.max) {
+          return 'Valor inválido para dia!';
+        }
+
+      }
+
+    });
+
+    if (!findMonth) {
+      return 'Valor inválido para mês!';
+    }
+
+    if (hourInt < 0 || hourInt > 23) {
+      return 'Valor inválido para hora!';
+    }
+
+    if (minuteInt < 0 || minuteInt > 59) {
+      return 'Valor inválido para minuto!';
+    }
+
+    if (!(description.length > 0)) {
+      return 'Informe uma descrição!';
+    }
+
+    return '';
 
   }
 
@@ -74,7 +148,7 @@ export function AppointmentCreate() {
 
     if (returnValid == '') {
 
-      /*const newAppointment = {
+      const newAppointment = {
         id: uuid.v4(),
         guild,
         category,
@@ -90,7 +164,7 @@ export function AppointmentCreate() {
         JSON.stringify([...appointments, newAppointment])
       );
 
-      navigation.navigate('Home');*/
+      navigation.navigate('Home');
 
     } else {
       Alert.alert('Falha na validação', returnValid);
